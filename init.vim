@@ -40,7 +40,6 @@ Plug 'tpope/vim-repeat'
 Plug 'tpope/vim-commentary'
 Plug 'xolox/vim-misc'
 Plug 'junegunn/vim-easy-align'
-Plug 'matze/vim-move'
 Plug 'vim-scripts/auto-pairs-gentle'
 
 " Searching / File browsing
@@ -209,8 +208,8 @@ set fillchars+=vert:│
 match ErrorMsg '\s\+$'
 
 " Whitespace highlights
-highlight NonText ctermfg=2 guifg=#4a4a59
-highlight SpecialKey ctermfg=2 guifg=#4a4a59
+highlight Whitespace ctermfg=10 guifg=#4a4a59
+highlight NonText ctermfg=10 guifg=#4a4a59
 
 " 80 character limit highlight
 if exists('+colorcolumn')
@@ -223,35 +222,35 @@ end
 
 " map {lhs} {rhs}
 "
-"	Map the key sequence {lhs} to {rhs} for the modes
-"	where the map command applies.  The result, including
-"	{rhs}, is then further scanned for mappings.  This
-"	allows for nested and recursive use of mappings.
+"    Map the key sequence {lhs} to {rhs} for the modes
+"    where the map command applies.  The result, including
+"    {rhs}, is then further scanned for mappings.  This
+"    allows for nested and recursive use of mappings.
 
 " remap {lhs} {rhs}
 "
-"	Map the key sequence {lhs} to {rhs} for the modes
-"	where the map command applies.  Disallow mapping of
-"	{rhs}, to avoid nested and recursive mappings.  Often
-"	used to redefine a command.
+"    Map the key sequence {lhs} to {rhs} for the modes
+"    where the map command applies.  Disallow mapping of
+"    {rhs}, to avoid nested and recursive mappings.  Often
+"    used to redefine a command.
 
 " unmap {lhs}
 "
-"	Remove the mapping of {lhs} for the modes where the
-"	map command applies.  The mapping may remain defined
-"	for other modes where it applies.
+"    Remove the mapping of {lhs} for the modes where the
+"    map command applies.  The mapping may remain defined
+"    for other modes where it applies.
 
 " Map modes
-"<Space>	Normal, Visual, Select and Operator-pending
-"	n		Normal
-"	v		Visual and Select
-"	s		Select
-"	x		Visual
-"	o		Operator-pending
-"	!		Insert and Command-line
-"	i		Insert
-"	l		":lmap" mappings for Insert, Command-line and Lang-Arg
-"	c		Command-line
+"<Space>    Normal, Visual, Select and Operator-pending
+"    n        Normal
+"    v        Visual and Select
+"    s        Select
+"    x        Visual
+"    o        Operator-pending
+"    !        Insert and Command-line
+"    i        Insert
+"    l        ":lmap" mappings for Insert, Command-line and Lang-Arg
+"    c        Command-line
 
 " Auto-run neomake
 autocmd! BufWritePost * Neomake
@@ -302,10 +301,7 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
-" vim-move key
-let g:move_key_modifier = 'C'
-" <(key)-k>   Move current line/selections up
-" <(key)-j>   Move current line/selections down
+nnoremap <Leader>` :source $MYVIMRC<CR>
 
 """"""""""""""""""""""""""""""""""""
 " Language specific
