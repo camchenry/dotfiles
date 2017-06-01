@@ -306,3 +306,6 @@ nnoremap <Leader>` :source $MYVIMRC<CR>
 """"""""""""""""""""""""""""""""""""
 " Language specific
 """"""""""""""""""""""""""""""""""""
+
+" TODO
+set expandtab
