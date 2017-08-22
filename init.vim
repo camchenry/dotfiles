@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""
 " Vim Configuration
-" Last Updated: May 16, 2017
+" Last Updated: Aug 22, 2017
 """"""""""""""""""""""""""""""""""""
 
 " Make vim incompatible with vi
@@ -150,20 +150,6 @@ set breakindent
 
 " Always show n lines around the current line
 set so=7
-
-if has("gui_running")
-	" (GUI) Set gvim options, disabling all the annoying things about it
-	set go=egmt
-
-	" (GUI) Set mouse to console mode (disable)
-	set mouse=c
-
-	" (GUI) Suppress errors
-	set noerrorbells
-	set novisualbell
-	set t_vb=
-	set tm=500
-endif
 
 """"""""""""""""""""""""""""""""""""
 " Colors and fonts
