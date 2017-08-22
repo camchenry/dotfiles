@@ -302,6 +302,7 @@ xmap ga <Plug>(EasyAlign)
 nmap ga <Plug>(EasyAlign)
 
 nnoremap <Leader>` :source $MYVIMRC<CR>
+nnoremap <Leader>wd :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 
 """"""""""""""""""""""""""""""""""""
 " Language specific
