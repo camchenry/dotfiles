@@ -301,8 +301,16 @@ xmap ga <Plug>(EasyAlign)
 " Start interactive EasyAlign for a motion/text object (e.g. gaip)
 nmap ga <Plug>(EasyAlign)
 
+"
+" Leader mappings
+"
+
+" Reload vim config file
 nnoremap <Leader>` :source $MYVIMRC<CR>
+" Delete trailing whitespace
 nnoremap <Leader>wd :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+" Get rid of highlighting
+nnoremap <Leader><space> :noh<CR>
 
 """"""""""""""""""""""""""""""""""""
 " Language specific
