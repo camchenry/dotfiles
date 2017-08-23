@@ -11,25 +11,25 @@ set nocompatible
 """"""""""""""""""""""""""""""""""""
 " Automatically install vim-plug if it does not exist
 if has("nvim")
-	let vimplug_exists = expand('~/.config/nvim/autoload/plug.vim')
+    let vimplug_exists = expand('~/.config/nvim/autoload/plug.vim')
 
-	if !filereadable(vimplug_exists)
-		echo "Installing Vim-Plug..."
-		echo ""
-		silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if !filereadable(vimplug_exists)
+        echo "Installing Vim-Plug..."
+        echo ""
+        silent !\curl -fLo ~/.config/nvim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-		autocmd VimEnter * PlugInstall | source $MYVIMRC
-	endif
+        autocmd VimEnter * PlugInstall | source $MYVIMRC
+    endif
 else
-	let vimplug_exists = expand('~/.vim/autoload/plug.vim')
+    let vimplug_exists = expand('~/.vim/autoload/plug.vim')
 
-	if !filereadable(vimplug_exists)
-		echo "Installing Vim-Plug..."
-		echo ""
-		silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    if !filereadable(vimplug_exists)
+        echo "Installing Vim-Plug..."
+        echo ""
+        silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-		autocmd VimEnter * PlugInstall | source $MYVIMRC
-	endif
+        autocmd VimEnter * PlugInstall | source $MYVIMRC
+    endif
 endif
 
 call plug#begin(expand('~/.config/nvim/plugged/'))
@@ -49,8 +49,7 @@ Plug 'junegunn/fzf.vim'
 
 " Visuals
 Plug 'lifepillar/vim-solarized8' " Solarized colorscheme
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
+Plug 'itchyny/lightline.vim' " Status line
 
 " Misc
 " Highlight trailing whitespace
@@ -105,8 +104,23 @@ set number
 set relativenumber
 set cursorline
 
-" Allows airline to appear
+" Allows status line to always appear
 set laststatus=2
+
+let g:lightline = {}
+let g:lightline.mode_map = {
+    \ 'n' : 'N',
+    \ 'i' : 'I',
+    \ 'R' : 'R',
+    \ 'v' : 'V',
+    \ 'V' : 'V-LINE',
+    \ "\<C-v>": 'V-BLOCK',
+    \ 'c' : 'CMD',
+    \ 's' : 'SELECT',
+    \ 'S' : 'S-LINE',
+    \ "\<C-s>": 'S-BLOCK',
+    \ 't': 'TERM',
+    \ }
 
 " Show last command run
 " (Conflicts with airline)
@@ -177,9 +191,9 @@ set binary
 
 " Vim only
 if !has("nvim")
-	" Change where swap files are stored
-	set directory=~/.vim/swap//
-	set undodir=~/.vim/undo//
+    " Change where swap files are stored
+    set directory=~/.vim/swap//
+    set undodir=~/.vim/undo//
 endif
 
 set tags=./tags;,tags;
@@ -199,7 +213,7 @@ highlight NonText ctermfg=10 guifg=#4a4a59
 
 " 80 character limit highlight
 if exists('+colorcolumn')
-	set colorcolumn=80
+    set colorcolumn=80
 end
 
 """"""""""""""""""""""""""""""""""""
