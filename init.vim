@@ -76,11 +76,17 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 
+" Twig templates
+Plug 'evidens/vim-twig'
+
 " Markdown
 Plug 'tpope/vim-markdown'
 
 " CSV
 Plug 'chrisbra/csv.vim'
+
+" GLSL
+Plug 'tikhomirov/vim-glsl'
 
 call plug#end()
 
