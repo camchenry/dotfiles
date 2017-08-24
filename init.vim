@@ -47,6 +47,9 @@ Plug 'scrooloose/nerdTree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
 
+" Session
+Plug 'xolox/vim-session'
+
 " Visuals
 Plug 'lifepillar/vim-solarized8' " Solarized colorscheme
 Plug 'itchyny/lightline.vim' " Status line
@@ -221,6 +224,14 @@ highlight NonText ctermfg=10 guifg=#4a4a59
 if exists('+colorcolumn')
     set colorcolumn=80
 end
+
+""" Session
+let g:session_autosave='yes'
+let g:session_autosave_to='autosave'
+let g:session_autosave_periodic='2'
+let g:session_autosave_silent=1
+let g:session_default_to_last=1
+let g:session_autoload = 'no'
 
 """"""""""""""""""""""""""""""""""""
 " Macros, remaps
