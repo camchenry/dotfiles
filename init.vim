@@ -71,7 +71,6 @@ Plug 'shawncplus/phpcomplete.vim'
 
 " Lua
 Plug 'xolox/vim-lua-ftplugin'
-Plug 'xolox/vim-lua-inspect'
 
 " HTML/CSS
 Plug 'hail2u/vim-css3-syntax'
@@ -328,6 +327,8 @@ nnoremap <Leader>` :source $MYVIMRC<CR>
 nnoremap <Leader>wd :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
 " Get rid of highlighting
 nnoremap <Leader><space> :noh<CR>
+" Run Love2D game
+nnoremap <Leader>l :!love . &<CR>
 
 """"""""""""""""""""""""""""""""""""
 " Language specific
