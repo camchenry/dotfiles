@@ -116,6 +116,12 @@ set cursorline
 set laststatus=2
 
 let g:lightline = {}
+let g:lightline.active = {
+    \ 'left': [ [ 'mode', 'paste' ],
+    \           [ 'readonly', 'relativepath', 'modified' ] ],
+    \ 'right': [ [ 'lineinfo' ],
+    \            [ 'percent' ],
+    \            [ 'fileformat', 'fileencoding', 'filetype' ] ] }
 let g:lightline.mode_map = {
     \ 'n' : 'N',
     \ 'i' : 'I',
