@@ -283,12 +283,20 @@ noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
 
-" Terminal emulator remaps
+" Disable escape for good practice
+inoremap <ESC> <NOP>
 
-tnoremap <C-J> <C-\><C-n><C-W>j
-tnoremap <C-K> <C-\><C-n><C-W>k
-tnoremap <C-L> <C-\><C-n><C-W>l
-tnoremap <C-H> <C-\><C-n><C-W>h
+" Replace escape with jk/kj
+inoremap kj <ESC>
+inoremap jk <ESC>
+
+" Allow escaping from terminal using <C-(HJKL)>>
+if has("nvim")
+	tnoremap <C-J> <C-\><C-n><C-W>j
+	tnoremap <C-K> <C-\><C-n><C-W>k
+	tnoremap <C-L> <C-\><C-n><C-W>l
+	tnoremap <C-H> <C-\><C-n><C-W>h
+endif
 
 " Switch buffers more easily
 nnoremap <C-h> <C-w>h
