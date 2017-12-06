@@ -361,3 +361,12 @@ nnoremap <Leader>M :Maps<CR>
 """"""""""""""""""""""""""""""""""""
 
 autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
+
+
+""""""""""""""""""""""""""""""""""""
+" Computer specific
+""""""""""""""""""""""""""""""""""""
+
+if hostname() =~ "loopsw"
+	set expandtab
+endif
