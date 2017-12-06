@@ -58,6 +58,9 @@ Plug 'itchyny/lightline.vim' " Status line
 " Highlight trailing whitespace
 Plug 'bronson/vim-trailing-whitespace'
 
+" Auto completion
+Plug 'ervandew/supertab'
+
 " Neomake can perform any task automatically and asynchronously
 " Very powerful for build tools
 Plug 'neomake/neomake'
@@ -178,6 +181,12 @@ set breakindent
 
 " Always show n lines around the current line
 set so=7
+
+" Auto completion rules
+" Only insert the longest common text
+" Show the menu also when there is only one match
+set completeopt=longest,menuone,preview,noinsert
+let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
 """"""""""""""""""""""""""""""""""""
 " Colors and fonts
@@ -348,5 +357,4 @@ nnoremap <Leader>l :!love . &<CR>
 " Language specific
 """"""""""""""""""""""""""""""""""""
 
-" TODO
-set expandtab
+autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
