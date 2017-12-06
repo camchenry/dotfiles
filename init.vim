@@ -193,11 +193,10 @@ let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 """"""""""""""""""""""""""""""""""""
 
 syntax on
-colorscheme solarized8_dark
 set background=dark
+colorscheme solarized8_dark
 set t_Co=256
 let g:solarized_termcolors=256
-let g:solarized_visibility="low"
 
 let g:airline_powerline_fonts = 0
 
