@@ -316,6 +316,26 @@ nnoremap <C-l> <C-w>l
 nnoremap : ;
 nnoremap ; :
 
+" Start interactive EasyAlign in visual mode (e.g. vipga)
+xmap ga <Plug>(EasyAlign)
+
+" Start interactive EasyAlign for a motion/text object (e.g. gaip)
+nmap ga <Plug>(EasyAlign)
+
+
+"
+" Leader mappings
+"
+
+" Reload vim config file
+nnoremap <Leader>` :source $MYVIMRC<CR>
+" Delete trailing whitespace
+nnoremap <Leader>wd :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+" Get rid of highlighting
+nnoremap <Leader><space> :noh<CR>
+" Run Love2D game
+nnoremap <Leader>l :!love . &<CR>
+
 " Copy to clipboard
 vnoremap <leader>y  "+y
 nnoremap <leader>Y  "+yg_
@@ -332,25 +352,9 @@ nnoremap <Leader>f :FZF<CR>
 nnoremap <Leader>g :Ag<CR>
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>T :BTags<CR>
-
-" Start interactive EasyAlign in visual mode (e.g. vipga)
-xmap ga <Plug>(EasyAlign)
-
-" Start interactive EasyAlign for a motion/text object (e.g. gaip)
-nmap ga <Plug>(EasyAlign)
-
-"
-" Leader mappings
-"
-
-" Reload vim config file
-nnoremap <Leader>` :source $MYVIMRC<CR>
-" Delete trailing whitespace
-nnoremap <Leader>wd :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
-" Get rid of highlighting
-nnoremap <Leader><space> :noh<CR>
-" Run Love2D game
-nnoremap <Leader>l :!love . &<CR>
+nnoremap <Leader>b :Buffers<CR>
+nnoremap <Leader>C :Commands<CR>
+nnoremap <Leader>M :Maps<CR>
 
 """"""""""""""""""""""""""""""""""""
 " Language specific
