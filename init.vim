@@ -246,6 +246,25 @@ let g:session_autosave_silent=1
 let g:session_default_to_last=1
 let g:session_autoload = 'no'
 
+" Fuzzy finding
+
+" --column: Show column number
+" --line-number: Show line number
+" --no-heading: Do not show file headings in results
+" --fixed-strings: Search term as a literal string
+" --ignore-case: Case insensitive search
+" --no-ignore: Do not respect .gitignore, etc.
+" --hidden: Search hidden files and folders
+" --follow: Follow symlinks
+" --glob: Additional conditions for search (in this case ignore everything
+"         in the .git/ folder and CVS/ folder)
+" --color: Search color options
+
+if executable('rg')
+	command! -bang -nargs=* Ripgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!CVS/*" 2> /dev/null '.shellescape(<q-args>), 1, <bang>0)
+	" --color "always"
+endif
+
 """"""""""""""""""""""""""""""""""""
 " Macros, remaps
 """"""""""""""""""""""""""""""""""""
@@ -348,8 +367,13 @@ vnoremap <leader>p "+p
 vnoremap <leader>P "+P
 
 " Fuzzy finding
-nnoremap <Leader>f :FZF<CR>
-nnoremap <Leader>g :Ag<CR>
+nnoremap <Leader>f :Files<CR>
+if executable('ag')
+	nnoremap <Leader>g :Ag<CR>
+endif
+if executable('rg')
+	nnoremap <Leader>g :Ripgrep<CR>
+endif
 nnoremap <Leader>t :Tags<CR>
 nnoremap <Leader>T :BTags<CR>
 nnoremap <Leader>b :Buffers<CR>
