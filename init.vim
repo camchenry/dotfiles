@@ -348,10 +348,16 @@ nmap ga <Plug>(EasyAlign)
 
 " Reload vim config file
 nnoremap <Leader>` :source $MYVIMRC<CR>
+
 " Delete trailing whitespace
-nnoremap <Leader>wd :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
+nnoremap <Leader>d<space> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR><C-O>
+
+" Delete Windows line endings
+nnoremap <Leader>d$ :%s/\r//g<CR><C-O>
+
 " Get rid of highlighting
 nnoremap <Leader><space> :noh<CR>
+
 " Run Love2D game
 nnoremap <Leader>l :!love . &<CR>
 
