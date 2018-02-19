@@ -32,7 +32,11 @@ else
     endif
 endif
 
-call plug#begin(expand('~/.config/nvim/plugged/'))
+if has("nvim")
+	call plug#begin(expand('~/.config/nvim/plugged/'))
+else
+	call plug#begin(expand('~/.vim/plugged/'))
+endif
 
 " General
 Plug 'tpope/vim-surround'
