@@ -425,6 +425,8 @@ autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
 " Computer specific
 """"""""""""""""""""""""""""""""""""
 
-if hostname() =~ "loopsw"
+if hostname() =~ "LSW"
 	set noexpandtab
+else
+	set expandtab
 endif
