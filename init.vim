@@ -69,6 +69,14 @@ Plug 'ervandew/supertab'
 " Very powerful for build tools
 Plug 'neomake/neomake'
 
+if has('nvim')
+  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+else
+  Plug 'Shougo/deoplete.nvim'
+  Plug 'roxma/nvim-yarp'
+  Plug 'roxma/vim-hug-neovim-rpc'
+endif
+
 " Filetype specific plugins
 """""""""""""""""""""""""""
 
@@ -96,6 +104,10 @@ Plug 'chrisbra/csv.vim'
 
 " GLSL
 Plug 'tikhomirov/vim-glsl'
+
+" Rust
+Plug 'rust-lang/rust.vim'
+Plug 'racer-rust/vim-racer'
 
 call plug#end()
 
@@ -192,6 +204,8 @@ set so=7
 set completeopt=longest,menuone,preview,noinsert
 let g:SuperTabDefaultCompletionType = "<c-x><c-o>"
 
+let g:deoplete#enable_at_startup = 1
+
 """"""""""""""""""""""""""""""""""""
 " Colors and fonts
 """"""""""""""""""""""""""""""""""""
@@ -267,6 +281,16 @@ let g:session_autoload = 'no'
 if executable('rg')
 	command! -bang -nargs=* Ripgrep call fzf#vim#grep('rg --column --line-number --no-heading --fixed-strings --ignore-case --no-ignore --hidden --follow --glob "!.git/*" --glob "!CVS/*" 2> /dev/null '.shellescape(<q-args>), 1, <bang>0)
 	" --color "always"
+endif
+
+if executable('racer')
+    set hidden " Otherwise you have to save on every goto-definition
+    let g:racer_cmd = "/home/camchenry/.cargo/bin/racer"
+    let g:racer_experimental_completer = 1
+    au FileType rust nmap gd <Plug>(rust-def)
+    au FileType rust nmap gs <Plug>(rust-def-split)
+    au FileType rust nmap gx <Plug>(rust-def-vertical)
+    au FileType rust nmap <leader>gd <Plug>(rust-doc)
 endif
 
 """"""""""""""""""""""""""""""""""""
