@@ -211,10 +211,10 @@ let g:deoplete#enable_at_startup = 1
 """"""""""""""""""""""""""""""""""""
 
 syntax on
+colorscheme solarized8
 set background=dark
-colorscheme solarized8_dark
 set t_Co=256
-let g:solarized_termcolors=256
+let g:solarized_use16 = 1
 
 let g:airline_powerline_fonts = 0
 
@@ -430,3 +430,10 @@ if hostname() =~ "LSW"
 else
 	set expandtab
 endif
+
+""""""""""""""""""""""""""""""""""""
+" Overrides (hacks)
+""""""""""""""""""""""""""""""""""""
+
+" This shouldn't belong here, something is messing it up
+colorscheme solarized8
