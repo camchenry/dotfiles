@@ -1,6 +1,6 @@
 """"""""""""""""""""""""""""""""""""
 " Vim Configuration
-" Last Updated: Aug 22, 2017
+" Last Updated: Apr 26, 2021
 """"""""""""""""""""""""""""""""""""
 
 " Make vim incompatible with vi
@@ -47,12 +47,8 @@ Plug 'junegunn/vim-easy-align'
 Plug 'vim-scripts/auto-pairs-gentle'
 
 " Searching / File browsing
-Plug 'scrooloose/nerdTree'
 Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --bin' }
 Plug 'junegunn/fzf.vim'
-
-" Session
-Plug 'xolox/vim-session'
 
 " Visuals
 Plug 'lifepillar/vim-solarized8' " Solarized colorscheme
@@ -67,25 +63,18 @@ Plug 'ervandew/supertab'
 
 " Neomake can perform any task automatically and asynchronously
 " Very powerful for build tools
-Plug 'neomake/neomake'
+" Plug 'neomake/neomake'
 
-if has('nvim')
-  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
-else
-  Plug 'Shougo/deoplete.nvim'
-  Plug 'roxma/nvim-yarp'
-  Plug 'roxma/vim-hug-neovim-rpc'
-endif
+" if has('nvim')
+"  Plug 'Shougo/deoplete.nvim', { 'do': ':UpdateRemotePlugins' }
+" else
+"  Plug 'Shougo/deoplete.nvim'
+"  Plug 'roxma/nvim-yarp'
+"  Plug 'roxma/vim-hug-neovim-rpc'
+" endif
 
 " Filetype specific plugins
 """""""""""""""""""""""""""
-
-" PHP
-Plug 'stanangeloff/php.vim'
-Plug 'shawncplus/phpcomplete.vim'
-
-" Lua
-Plug 'xolox/vim-lua-ftplugin'
 
 " HTML/CSS
 Plug 'hail2u/vim-css3-syntax'
@@ -93,21 +82,14 @@ Plug 'gorodinskiy/vim-coloresque'
 Plug 'tpope/vim-haml'
 Plug 'mattn/emmet-vim'
 
-" Twig templates
-Plug 'evidens/vim-twig'
-
 " Markdown
 Plug 'tpope/vim-markdown'
 
 " CSV
 Plug 'chrisbra/csv.vim'
 
-" GLSL
-Plug 'tikhomirov/vim-glsl'
-
 " Rust
 Plug 'rust-lang/rust.vim'
-Plug 'racer-rust/vim-racer'
 
 call plug#end()
 
@@ -243,7 +225,7 @@ set wildignore+=*\\tmp\\*,*.swp,*.zip,*.exe  " Windows
 " Whitespace chars
 set list
 set listchars=tab:»\ ,extends:›,precedes:‹,nbsp:⎵,trail:·
-set showbreak=↪\ 
+set showbreak=↪\
 set fillchars+=vert:│
 match ErrorMsg '\s\+$'
 
@@ -283,16 +265,6 @@ if executable('rg')
 	" --color "always"
 endif
 
-if executable('racer')
-    set hidden " Otherwise you have to save on every goto-definition
-    let g:racer_cmd = "/home/camchenry/.cargo/bin/racer"
-    let g:racer_experimental_completer = 1
-    au FileType rust nmap gd <Plug>(rust-def)
-    au FileType rust nmap gs <Plug>(rust-def-split)
-    au FileType rust nmap gx <Plug>(rust-def-vertical)
-    au FileType rust nmap <leader>gd <Plug>(rust-doc)
-endif
-
 """"""""""""""""""""""""""""""""""""
 " Macros, remaps
 """"""""""""""""""""""""""""""""""""
@@ -330,20 +302,13 @@ endif
 "    c        Command-line
 
 " Auto-run neomake
-autocmd! BufWritePost * Neomake
+" autocmd! BufWritePost * Neomake
 
 " Disable arrow keys
 noremap <Up> <NOP>
 noremap <Down> <NOP>
 noremap <Left> <NOP>
 noremap <Right> <NOP>
-
-" Disable escape for good practice
-inoremap <ESC> <NOP>
-
-" Replace escape with jk/kj
-inoremap kj <ESC>
-inoremap jk <ESC>
 
 " Allow escaping from terminal using <C-(HJKL)>>
 if has("nvim")
@@ -386,9 +351,6 @@ nnoremap <Leader>d$ :%s/\r//g<CR><C-O>
 " Get rid of highlighting
 nnoremap <Leader><space> :noh<CR>
 
-" Run Love2D game
-nnoremap <Leader>l :!love . &<CR>
-
 " Copy to clipboard
 vnoremap <leader>y  "+y
 nnoremap <leader>Y  "+yg_
@@ -418,18 +380,9 @@ nnoremap <Leader>M :Maps<CR>
 " Language specific
 """"""""""""""""""""""""""""""""""""
 
-autocmd FileType php setlocal omnifunc=phpcomplete#CompletePHP
-
-
 """"""""""""""""""""""""""""""""""""
 " Computer specific
 """"""""""""""""""""""""""""""""""""
-
-if hostname() =~ "LSW"
-	set noexpandtab
-else
-	set expandtab
-endif
 
 """"""""""""""""""""""""""""""""""""
 " Overrides (hacks)
