@@ -2,9 +2,9 @@
 #
 # Installation
 # ------------
-# Create a symbolic link at ~/.gitconfig (or other path) by running:
+# Create a symbolic link at ~/.alacritty.yml (or other path) by running:
 # ```bash
-# ln -s dotfiles/gitconfig ~/.gitconfig`
+# ln -s dotfiles/alacritty.yml ~/.alacritty.yml`
 # ```
 #
 # Information
