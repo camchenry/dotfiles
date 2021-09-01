@@ -1,9 +1,17 @@
+# gitconfig file
+#
+# Installation
+# ------------
+# Create a symbolic link at ~/.gitconfig (or other path) by running:
+# ```bash
+# ln -s dotfiles/gitconfig ~/.gitconfig`
+# ```
 [user]
     email = camchenry@users.noreply.github.com
     name = Cameron McHenry
 
 [core]
-    editor = nvim
+    editor = code
 
 [alias]
     prune = fetch --prune
@@ -60,13 +68,3 @@
     # Note: this global option applies during receive and transmit
     # https://git-scm.com/docs/git-config#git-config-transferfsckObjects
     # via https://groups.google.com/forum/#!topic/binary-transparency/f-BI4o8HZW0
-
-
-# A nice little github-like colorful, split diff right in the console.
-# via http://owen.cymru/github-style-diff-in-terminal-with-icdiff/
-[diff]
-    tool = icdiff
-[difftool]
-    prompt = false
-[difftool "icdiff"]
-    cmd = /usr/local/bin/icdiff --line-numbers $LOCAL $REMOTE

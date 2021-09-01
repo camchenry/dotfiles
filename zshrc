@@ -1,9 +1,14 @@
 # zshrc file
-# ----------
 #
-# To install: create a symbolic link at ~/.zshrc (or other path)
-#             by running: `ln -s dotfiles/.zshrc ~/.zshrc`.
+# Installation
+# ------------
+# Create a symbolic link at ~/.zshrc (or other path) by running:
+# ```bash
+# ln -s dotfiles/zshrc ~/.zshrc`
+# ```
 #
+# Information
+# -----------
 # Loaded: when interactive
 #
 # What should go in this file:
