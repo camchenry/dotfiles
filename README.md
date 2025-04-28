@@ -1,10 +1,10 @@
 # dotfiles
+
 My personal configuration of dotfiles
 
-## Installing programs
+## Programs
 
-### Alacritty
+These are some of the programs I currently use for development.
 
-```bash
-brew install --cask alacritty --no-quarantine
-```
+- https://ghostty.org/
+- https://www.raycast.com/
