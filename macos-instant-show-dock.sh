@@ -1,3 +1,5 @@
+#!/bin/bash
+
 # Allows the macOS dock to show instantly when hidden by default.
 # Thanks to https://github.com/gaurav-ketkar for showing me this trick.
 
