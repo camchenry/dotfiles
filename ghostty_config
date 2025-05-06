@@ -1,0 +1,4 @@
+font-size = 16
+
+# Scrollback size, in bytes
+scrollback-limit = 4000000
