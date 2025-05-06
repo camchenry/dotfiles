@@ -8,6 +8,17 @@ if [[ "$(uname)" == "Darwin" ]]; then
   echo "Running on macOS"
   ./macos-instant-show-dock.sh
 
+  # install zshrc
+  echo "Installing zshrc..."
+  # If the zshrc file already exists, back it up
+  if [[ -f "$HOME/.zshrc" ]]; then
+    echo "Backing up existing zshrc to $HOME/.zshrc.bak"
+    mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+  fi
+  # Link the zshrc file to `$HOME/.zshrc` (or overwrite if it exists)
+  ln -sf "~/dotfiles/zshrc" "$HOME/.zshrc"
+  echo "zshrc installed"
+
   # Ensure that Homebrew is installed
   if ! command -v brew &> /dev/null; then
     echo "Homebrew not found. Installing Homebrew..."
@@ -29,6 +40,17 @@ fi
 # Detect if running in a GitHub Codespace
 if [[ -n "${CODESPACES:-}" ]]; then
   echo "Running in a GitHub Codespace"
+
+  # install zshrc
+  echo "Installing zshrc..."
+  # If the zshrc file already exists, back it up
+  if [[ -f "$HOME/.zshrc" ]]; then
+    echo "Backing up existing zshrc to $HOME/.zshrc.bak"
+    mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+  fi
+  # Link the zshrc file to `$HOME/.zshrc` (or overwrite if it exists)
+  ln -sf "~/dotfiles/zshrc" "$HOME/.zshrc"
+  echo "zshrc installed"
 fi
 
 ./create-aliases.sh
