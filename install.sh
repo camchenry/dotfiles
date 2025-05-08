@@ -10,14 +10,20 @@ if [[ "$(uname)" == "Darwin" ]]; then
 
   # install zshrc
   echo "Installing zshrc..."
-  # If the zshrc file already exists, back it up
+  # If the .zshrc file exists, just add a line to also run the dotfiles script. Otherwise,
+  # create a symbolic link to the dotfiles script.
   if [[ -f "$HOME/.zshrc" ]]; then
-    echo "Backing up existing zshrc to $HOME/.zshrc.bak"
-    mv "$HOME/.zshrc" "$HOME/.zshrc.bak"
+    echo "Adding line to existing .zshrc"
+    # Check if the line already exists
+    if grep -q "source ~/dotfiles/zshrc" "$HOME/.zshrc"; then
+      echo "Line already exists in .zshrc"
+    else
+      echo "source ~/dotfiles/zshrc" >> "$HOME/.zshrc"
+    fi
+  else
+    echo "Creating symbolic link to zshrc"
+    ln -sf "~/dotfiles/zshrc" "$HOME/.zshrc"
   fi
-  # Link the zshrc file to `$HOME/.zshrc` (or overwrite if it exists)
-  ln -sf "~/dotfiles/zshrc" "$HOME/.zshrc"
-  echo "zshrc installed"
 
   # Ensure that Homebrew is installed
   if ! command -v brew &> /dev/null; then

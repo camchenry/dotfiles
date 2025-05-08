@@ -4,5 +4,3 @@ cask "ghostty"
 brew "gh"
 # git, and over
 brew "git"
-# fish
-brew "fish"
