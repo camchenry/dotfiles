@@ -1,0 +1,113 @@
+#!/usr/bin/env bash
+
+# Register as alias with: gh alias set --shell 'pr push' '/Users/camchenry/.local/bin/gh-pr-push "$@"'
+
+set -euo pipefail
+
+usage() {
+	cat >&2 <<'USAGE'
+Usage: gh pr push <pr-number-or-url> [source-ref]
+
+Push source-ref (default: HEAD) to the head branch of the given pull request.
+USAGE
+}
+
+die() {
+	printf 'gh pr push: %s\n' "$*" >&2
+	exit 1
+}
+
+lowercase() {
+	printf '%s' "$1" | tr '[:upper:]' '[:lower:]'
+}
+
+normalize_github_url() {
+	local url="${1%.git}"
+
+	case "$url" in
+		git@github.com:*) url="${url#git@github.com:}" ;;
+		ssh://git@github.com/*) url="${url#ssh://git@github.com/}" ;;
+		https://github.com/*) url="${url#https://github.com/}" ;;
+		http://github.com/*) url="${url#http://github.com/}" ;;
+	esac
+
+	printf '%s' "$url"
+}
+
+remote_exists() {
+	git remote get-url "$1" >/dev/null 2>&1
+}
+
+unique_remote_name() {
+	local base="$1"
+	local name="$base"
+	local index=2
+
+	while remote_exists "$name"; do
+		name="${base}-${index}"
+		index=$((index + 1))
+	done
+
+	printf '%s' "$name"
+}
+
+if [[ $# -eq 0 || "${1:-}" == "-h" || "${1:-}" == "--help" ]]; then
+	usage
+	if [[ $# -eq 0 ]]; then
+		exit 2
+	fi
+	exit 0
+fi
+
+if [[ $# -gt 2 ]]; then
+	usage
+	exit 2
+fi
+
+git rev-parse --git-dir >/dev/null || die 'not inside a git repository'
+
+pr="$1"
+source_ref="${2:-HEAD}"
+metadata=$(GH_PAGER=cat gh pr view "$pr" \
+	--json headRepositoryOwner,headRepository,headRefName,state \
+	--jq '[.headRepositoryOwner.login, .headRepository.name, .headRefName, .state] | @tsv')
+
+IFS=$'\t' read -r owner repo branch state <<<"$metadata"
+
+[[ -n "${owner:-}" ]] || die "could not determine the PR fork owner for $pr"
+[[ -n "${repo:-}" ]] || die "could not determine the PR fork repo for $pr"
+[[ -n "${branch:-}" ]] || die "could not determine the PR head branch for $pr"
+
+if [[ "${state:-}" != "OPEN" ]]; then
+	printf 'gh pr push: warning: PR %s is %s\n' "$pr" "${state:-unknown}" >&2
+fi
+
+target=$(lowercase "$owner/$repo")
+remote=''
+
+while IFS= read -r candidate; do
+	url=$(git remote get-url "$candidate" 2>/dev/null || true)
+	normalized=$(lowercase "$(normalize_github_url "$url")")
+
+	if [[ "$normalized" == "$target" ]]; then
+		remote="$candidate"
+		break
+	fi
+done < <(git remote)
+
+if [[ -z "$remote" ]]; then
+	protocol=$(GH_PAGER=cat gh config get git_protocol --host github.com 2>/dev/null || printf 'ssh')
+
+	if [[ "$protocol" == 'https' ]]; then
+		remote_url="https://github.com/${owner}/${repo}.git"
+	else
+		remote_url="git@github.com:${owner}/${repo}.git"
+	fi
+
+	remote=$(unique_remote_name "$owner")
+	git remote add "$remote" "$remote_url"
+	printf 'gh pr push: added remote %s -> %s\n' "$remote" "$remote_url" >&2
+fi
+
+printf 'gh pr push: pushing %s to %s/%s:%s\n' "$source_ref" "$owner" "$repo" "$branch" >&2
+git push "$remote" "$source_ref:$branch"
