@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-# Register as alias with: gh alias set --shell 'pr push' '/Users/camchenry/.local/bin/gh-pr-push "$@"'
+# Register as alias with: gh alias set --shell 'pr push' '/path/to/bin/gh-pr-push "$@"'
 
 set -euo pipefail
 
